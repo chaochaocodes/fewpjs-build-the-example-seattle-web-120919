@@ -3,9 +3,28 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+document.addEventListener("DOMContentLoaded", function() {
+    likeHeart()
+  })
 
-
-
+function likeHeart() {
+ 
+  let hearts = document.querySelectorAll('.like').forEach(like => {
+    like.addEventListener("click", function() {
+      mimicServerCall()
+      .then(res => {
+      if (like.innerHTML == EMPTY_HEART) {
+        like.innerHTML = FULL_HEART
+        like.className = "activated-heart"
+      } else {
+        like.innerHTML== EMPTY_HEART
+        like.className = ""
+      }
+    })
+      .catch(err => console.log(err))
+    })
+  })
+}
 
 //------------------------------------------------------------------------------
 // Ignore after this point. Used only for demo purposes
